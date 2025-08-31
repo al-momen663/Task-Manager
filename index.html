@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#062e3f">
+    <meta name="Description" content="A dynamic and aesthetic To-Do List WebApp.">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <!-- Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <!-- Firebase Realtime Database -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <link rel="shortcut icon" type="image/png" href="assets/favicon.png"/>
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/corner.css">
+    <title>JUST DO IT</title>
+</head>
+
+<body>
+    <!-- Profile Button -->
+    <div id="profile-container">
+        <button id="profile-btn" class="profile-btn">
+            <i class="fas fa-user"></i>
+        </button>
+        <div id="profile-dropdown" class="profile-dropdown hidden">
+            <div id="user-info">
+                <p>Welcome, <span id="user-name"></span>!</p>
+                <button id="logout-btn" class="dropdown-btn">Logout</button>
+            </div>
+            <div id="auth-options" class="hidden">
+                <button id="show-login-btn" class="dropdown-btn">Login</button>
+                <button id="show-register-btn" class="dropdown-btn">Register</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modals -->
+    <div id="login-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login</h2>
+            <input type="email" id="login-email" placeholder="Email">
+            <input type="password" id="login-password" placeholder="Password">
+            <button id="login-btn" class="auth-btn">Login</button>
+            <p>Don't have an account? <span id="show-register">Register</span></p>
+        </div>
+    </div>
+    
+    <div id="register-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Register</h2>
+            <input type="text" id="register-name" placeholder="Name">
+            <input type="email" id="register-email" placeholder="Email">
+            <input type="password" id="register-password" placeholder="Password">
+            <button id="register-btn" class="auth-btn">Register</button>
+            <p>Already have an account? <span id="show-login">Login</span></p>
+        </div>
+    </div>
+
+    <!-- Edit Todo Modal -->
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Edit Task</h2>
+            <input type="text" id="edit-todo-input" placeholder="Edit your task">
+            <button id="update-todo-btn" class="auth-btn">Update Task</button>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app">
+        <div id = "header">
+            <div class="flexrow-container">
+                <div class="standard-theme theme-selector"></div>
+                <div class="light-theme theme-selector"></div>
+                <div class="darker-theme theme-selector"></div>
+            </div>
+            <h1 id="title">Just do it.<div id="border"></div></h1>
+        </div>
+
+        <div id="form">
+            <form>
+                <input class="todo-input" type="text" placeholder="Add a task.">
+                <button class="todo-btn" type="submit">I Got This!</button>
+            </form>
+        </div>
+
+        <div>
+            <p><span id="datetime"></span></p>
+        </div>
+
+        <div id="myUnOrdList">
+            <ul class="todo-list">
+                <!-- Tasks will be added here dynamically -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Firebase config and app initialization -->
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDVD3jEiyiACT0g0_I5K07WbMaSiuU5RyM",
+            authDomain: "to-do-362e1.firebaseapp.com",
+            databaseURL: "https://to-do-362e1-default-rtdb.firebaseio.com",
+            projectId: "to-do-362e1",
+            storageBucket: "to-do-362e1.firebasestorage.app",
+            messagingSenderId: "911722684623",
+            appId: "1:911722684623:web:5e88db47ce41cda969d7ba"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const auth = firebase.auth();
+    </script>
+
+    <script src="JS/time.js"></script>
+    <script src="JS/main.js" type="text/javascript"></script>
+</body>
+</html>
